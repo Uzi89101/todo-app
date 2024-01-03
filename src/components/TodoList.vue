@@ -9,20 +9,36 @@ const {todoList} = storeToRefs(store)
 
 // destructuring action method doesn't require using storeToRefs:
 
-const {toggleCompleted} = store;
+const {toggleCompleted,deleteTodo} = store;
 
 </script>
 <template>
-    <div v-for ="todo in todoList" :key="todo.index" class="item">
+    <div v-for ="todo in todoList" :key="todo.id" class="item">
         <div class="content">
             <span :class="{ completed: todo.completed }">{{ todo.item }}</span>
-            <button @click.stop="toggleCompleted(todo.index)">&#10004;</button>
+            <span @click.stop="toggleCompleted(todo.id)">&#10004;</span>
+            <span @click.stop="deleteTodo(todo.id)" class="x">&#10060;</span>
         </div>
     </div>
 </template>
 <style scoped>
-.completed{
-    text-decoration: line-through;
+span {
+  margin: 0 10px;
+  cursor: pointer;
+}
+.item {
+  display: flex;
+  justify-content: center;
+}
+.content {
+  display: flex;
+  font-size: 1.5em;
+  justify-content: space-between;
+  width: 80vw;
+  padding: 5px;
+}
+.completed {
+  text-decoration: line-through;
 }
 
 </style>

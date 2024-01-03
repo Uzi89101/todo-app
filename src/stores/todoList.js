@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useTodoListStore = defineStore("todoList", {
   state:()=>({
-    todoList:[]
+    todoList:[],
+    id:0
   }),
   actions:{
     addTodo(item){
@@ -14,8 +15,8 @@ export const useTodoListStore = defineStore("todoList", {
         })
 
     },
-    toggleCompleted(idtoFind){
-      const todo = this.todoList.find((obj)=>obj.id ===idtoFind)
+    toggleCompleted(idToFind){
+      const todo = this.todoList.find((obj)=>obj.id ===idToFind)
       if (todo){
         todo.completed = !todo.completed
       }
